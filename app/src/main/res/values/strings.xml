@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">同城百家商家版</string>
+    <string name="intent_error">网络错误</string>
+</resources>
