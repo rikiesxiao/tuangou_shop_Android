@@ -1,6 +1,8 @@
 package com.x.net;
 
+import com.x.model.AccountsModel;
 import com.x.model.CommentModel;
+import com.x.model.MoneyInfoModel;
 import com.x.model.OrderModel;
 import com.x.model.UserModel;
 
@@ -39,6 +41,29 @@ public interface ServicesAPI {
  //点评列表
  @POST("?ctl=biz_dealr&act=app_dp_list&r_type=1&isapp=true")
  Observable<HttpResult<List<CommentModel>>> dp_list(
+         @Query("sid") String sid,
+         @Query("page") String page
+ );
+
+ //提交点评
+ @POST("?ctl=biz_dealr&act=app_do_reply_dp&r_type=1&isapp=true")
+ Observable<HttpResult<Object>> dp_submit(
+         @Query("sid") String sid,
+         @Query("aid") String aid,
+         @Query("data_id") String data_id,
+         @Query("reply_content") String reply_content
+ );
+
+
+ //商家账户金额统计
+ @POST("?ctl=biz_balance&r_type=1&isapp=true")
+ Observable<HttpResult<AccountsModel>> accounts_count(
+         @Query("sid") String sid
+ );
+
+ //商家账户金额明细列表
+ @POST("?ctl=biz_balance&act=detail&r_type=1&isapp=true")
+ Observable<HttpResult<List<MoneyInfoModel>>> accounts_list(
          @Query("sid") String sid,
          @Query("page") String page
  );

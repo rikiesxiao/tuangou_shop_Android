@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp"
-    android:background="#ffffff"
-    >
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,12 +13,15 @@
         android:orientation="horizontal"
         >
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/comment_cell_head"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:padding="3dp"
+            android:layout_marginRight="6dp"
+            android:padding="2dp"
+            app:riv_corner_radius="25dp"
+            app:riv_border_width="0dp"
+            app:riv_border_color="@color/white"
             />
 
 
@@ -165,10 +169,10 @@
         </LinearLayout>
 
             <TextView
+                android:id="@+id/comment_cell_repley"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:text="[掌柜回复]:大手动阀手动阀"
                 android:textSize="14sp"
                 android:textColor="#b28500"
@@ -176,9 +180,11 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <TextView
+                    android:id="@+id/comment_cell_rbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="34dp"
                     android:text="回复"

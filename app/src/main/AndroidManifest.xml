@@ -103,6 +103,13 @@
             android:screenOrientation="portrait" >
         </activity>
 
+        <activity android:name=".ReplyVC"
+            android:screenOrientation="portrait" >
+            </activity>
+
+        <activity android:name=".AccountsCountVC" android:screenOrientation="portrait"/>
+        <activity android:name=".MoneyListVC" />
+
 
     </application>
 

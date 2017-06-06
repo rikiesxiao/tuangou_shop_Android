@@ -147,7 +147,7 @@ public class PhotoPreView extends FragmentActivity {
         View view;
 
         public PhotoPreViewFragment(ImageItem item) {
-            this.item = new WeakReference<ImageItem>(item);
+            this.item = new WeakReference<>(item);
         }
 
         @Override

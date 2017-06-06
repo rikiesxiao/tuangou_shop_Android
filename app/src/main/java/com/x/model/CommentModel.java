@@ -1,12 +1,13 @@
 package com.x.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/6/5 0005.
  */
 
-public class CommentModel {
+public class CommentModel implements Serializable{
 
     private String id;
     private String content;

@@ -42,6 +42,11 @@ public class MainActivity extends BaseActivity {
         pushVC(CommentListVC.class);
     }
 
+    public void to_accounts(View v)
+    {
+        pushVC(AccountsCountVC.class);
+    }
+
     public void to_setup(View v)
     {
         pushVC(APPConfig.class);

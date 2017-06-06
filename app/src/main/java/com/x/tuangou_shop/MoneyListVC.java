@@ -1,20 +1,21 @@
 package com.x.tuangou_shop;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.x.adapter.CommentAdapter;
-import com.x.model.CommentModel;
+import com.x.adapter.MoneyCellAdapter;
+import com.x.adapter.OrderListAdapter;
+import com.x.model.MoneyInfoModel;
+import com.x.model.OrderModel;
 import com.x.net.XActivityindicator;
 import com.x.net.XNetUtil;
 import com.x.util.BaseActivity;
-import com.x.util.Bimp;
 import com.x.util.DataCache;
-import com.x.util.MyEventBus;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,28 +23,29 @@ import java.util.List;
 import static com.x.util.ApplicationClass.APPService;
 
 /**
- * Created by Administrator on 2017/6/5 0005.
+ * Created by x on 2017/6/6.
  */
 
-public class CommentListVC extends BaseActivity {
+public class MoneyListVC extends BaseActivity {
 
     SwipeRefreshLayout swipe_refresh;
     ListView mainList;
 
-    CommentAdapter adapter;
+    TextView titleTV;
+
+    MoneyCellAdapter adapter;
 
     int page = 1;
     boolean end = false;
 
-    List<CommentModel> arrs = new ArrayList<>();
+    List<MoneyInfoModel> arrs = new ArrayList<>();
 
     @Override
     protected void setupUi() {
-        setContentView(R.layout.mycollect);
-        EventBus.getDefault().register(this);
-
-        swipe_refresh = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
-        mainList = (ListView) findViewById(R.id.mycollect_list);
+        setContentView(R.layout.order_list);
+        titleTV = (TextView) findViewById(R.id.title);
+        swipe_refresh = (SwipeRefreshLayout)findViewById(R.id.order_list_refresh);
+        mainList = (ListView) findViewById(R.id.order_list_listview);
 
         swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -75,7 +77,9 @@ public class CommentListVC extends BaseActivity {
             }
         });
 
-        adapter = new CommentAdapter(this,arrs);
+        titleTV.setText("财务明细");
+
+        adapter = new MoneyCellAdapter(this,arrs);
 
         mainList.setAdapter(adapter);
 
@@ -88,14 +92,14 @@ public class CommentListVC extends BaseActivity {
 
         String sid = DataCache.getInstance().user.getSid()+"";
 
-        XNetUtil.Handle(APPService.dp_list(sid,page+""), new XNetUtil.OnHttpResult<List<CommentModel>>() {
+        XNetUtil.Handle(APPService.accounts_list(sid,page+""), new XNetUtil.OnHttpResult<List<MoneyInfoModel>>() {
             @Override
             public void onError(Throwable e) {
                 swipe_refresh.setRefreshing(false);
             }
 
             @Override
-            public void onSuccess(List<CommentModel> models) {
+            public void onSuccess(List<MoneyInfoModel> models) {
                 swipe_refresh.setRefreshing(false);
                 if(models != null)
                 {
@@ -132,20 +136,6 @@ public class CommentListVC extends BaseActivity {
     }
 
 
-    @Subscribe
-    public void getEventmsg(MyEventBus myEventBus) {
-        if (myEventBus.getMsg().equals("ReplySuccess")) {
-            adapter.notifyDataSetChanged();
-        }
-    }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        Bimp.clear();
-        EventBus.getDefault().unregister(this);
-
-    }
 }
+

@@ -44,5 +44,7 @@ dependencies {
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
     compile 'me.dm7.barcodescanner:zxing:1.9.3'
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile files('libs/photoview-library-1.2.2.jar')
 }
