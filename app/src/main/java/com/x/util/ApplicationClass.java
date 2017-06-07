@@ -16,6 +16,7 @@ import com.robin.lazy.cache.CacheLoaderManager;
 import com.robin.lazy.cache.disk.naming.HashCodeFileNameGenerator;
 import com.robin.lazy.cache.memory.MemoryCache;
 import com.robin.lazy.cache.util.MemoryCacheUtils;
+import com.robin.lazy.util.config.DataConfig;
 import com.x.net.ServicesAPI;
 import com.x.net.XNetUtil;
 import com.x.tuangou_shop.LoginVC;
@@ -27,8 +28,12 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -123,9 +128,40 @@ public class ApplicationClass extends MultiDexApplication {
 
 				Response response = chain.proceed(request);
 
+				//XNetUtil.APPPrintln(response.body().string());
+
 				return response;
 			}
-		}).build();
+		}).cookieJar(new CookieJar() {
+
+			private final List<Cookie> cookies = new ArrayList<Cookie>();
+
+			@Override
+			public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+
+			}
+
+			@Override
+			public List<Cookie> loadForRequest(HttpUrl url) {
+
+				if(cookies.size() == 0 && DataCache.getInstance().user != null)
+				{
+					Cookie.Builder builder = new Cookie.Builder();
+					builder.name("PHPSESSID");
+					builder.value(DataCache.getInstance().user.getSess_id());
+					builder.path("/");
+					builder.httpOnly();
+					builder.domain(url.host());
+					Cookie cookie = builder.build();
+
+					cookies.add(cookie);
+				}
+
+
+				return cookies;
+			}
+		})
+				.build();
 
 
 		retrofit = new Retrofit.Builder()

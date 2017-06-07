@@ -47,6 +47,31 @@ public class MainActivity extends BaseActivity {
         pushVC(AccountsCountVC.class);
     }
 
+    public void to_bankinfo(View v)
+    {
+        pushVC(BankInfoVC.class);
+    }
+
+    public void to_tixian(View v)
+    {
+        pushVC(TixianVC.class);
+    }
+
+    public void to_check_coupon(View v)
+    {
+        pushVC(CheckCouponVC.class);
+    }
+
+    public void to_scan(View v)
+    {
+        pushVC(QCScanVC.class);
+    }
+
+    public void to_history(View v)
+    {
+        pushVC(CheckHistoryListVC.class);
+    }
+
     public void to_setup(View v)
     {
         pushVC(APPConfig.class);

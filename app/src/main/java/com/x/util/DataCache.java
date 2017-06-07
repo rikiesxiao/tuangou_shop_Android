@@ -1,10 +1,19 @@
 package com.x.util;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import com.robin.lazy.cache.CacheLoaderManager;
 import com.x.model.UserModel;
+import com.x.net.XActivityindicator;
 import com.x.net.XNetUtil;
+import com.x.tuangou_shop.LoginVC;
+import com.x.tuangou_shop.R;
 
 import org.greenrobot.eventbus.EventBus;
+
+import static com.x.util.ApplicationClass.APPService;
+import static com.x.util.ApplicationClass.context;
 
 
 /**
@@ -41,13 +50,43 @@ public class DataCache {
 
     private DataCache()
     {
-//        nowCity = CacheLoaderManager.getInstance().loadSerializable("NowCity");
         user = CacheLoaderManager.getInstance().loadSerializable("User");
-//        searchKeys = CacheLoaderManager.getInstance().loadSerializable("SearchKeys");
-//        if(searchKeys == null){searchKeys = new SearchKeyModel();}
-//
-//        storesSearchKeys = CacheLoaderManager.getInstance().loadSerializable("StoresSearchKeys");
-//        if(storesSearchKeys == null){storesSearchKeys = new SearchKeyModel();}
+
+        if(user != null)
+        {
+            String id = user.getId();
+            String sid = user.getSid();
+            String a = user.getAccount_name();
+
+            XNetUtil.Handle(APPService.user_init(id, sid, a), new XNetUtil.OnHttpResult<String>() {
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onSuccess(String sess_id) {
+
+                    if(sess_id != null)
+                    {
+                        user.setSess_id(sess_id);
+                    }
+                    else
+                    {
+                        user = null;
+                        CacheLoaderManager.getInstance().delete("User");
+                        if(context instanceof Activity)
+                        {
+                            Intent intent = new Intent(context,LoginVC.class);
+                            context.startActivity(intent);
+                            ((Activity)context).overridePendingTransition(R.anim.push_up_in,R.anim.push_up_out);
+                            EventBus.getDefault().post(new MyEventBus("UserLogouted"));
+                        }
+                    }
+                }
+            });
+        }
+
     }
 
 }

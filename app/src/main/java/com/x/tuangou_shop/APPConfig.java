@@ -12,12 +12,15 @@ import com.bigkoo.alertview.OnItemClickListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.robin.lazy.cache.CacheLoaderManager;
 import com.x.net.XAPPUtil;
+import com.x.net.XNetUtil;
 import com.x.util.BaseActivity;
 import com.x.util.DataCache;
 import com.x.util.FileSizeUtil;
 import com.x.util.MyEventBus;
 
 import org.greenrobot.eventbus.EventBus;
+
+import static com.x.util.ApplicationClass.APPService;
 
 
 /**
@@ -107,6 +110,18 @@ public class APPConfig extends BaseActivity {
                     {
                         DataCache.getInstance().user = null;
                         CacheLoaderManager.getInstance().delete("User");
+
+                        XNetUtil.Handle(APPService.user_logout(), new XNetUtil.OnHttpResult<String>() {
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onSuccess(String s) {
+
+                            }
+                        });
 
                         presentVC(LoginVC.class);
                         finish();

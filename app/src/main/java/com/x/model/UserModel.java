@@ -26,6 +26,24 @@ public class UserModel implements Serializable {
     private String name;
     private String icon;
     private int status;
+    private String mobile;
+    private String sess_id;
+
+    public String getSess_id() {
+        return sess_id;
+    }
+
+    public void setSess_id(String sess_id) {
+        this.sess_id = sess_id;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getId() {
         return id;

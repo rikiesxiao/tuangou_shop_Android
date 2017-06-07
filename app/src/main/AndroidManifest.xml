@@ -109,6 +109,12 @@
 
         <activity android:name=".AccountsCountVC" android:screenOrientation="portrait"/>
         <activity android:name=".MoneyListVC" />
+        <activity android:name=".BankInfoVC" />
+        <activity android:name=".TixianVC" />
+        <activity android:name=".TixianListVC" />
+        <activity android:name=".CheckCouponVC" />
+        <activity android:name=".QCScanVC" />
+        <activity android:name=".CheckHistoryListVC" />
 
 
     </application>

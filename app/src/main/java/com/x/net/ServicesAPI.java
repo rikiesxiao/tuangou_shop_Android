@@ -1,9 +1,14 @@
 package com.x.net;
 
 import com.x.model.AccountsModel;
+import com.x.model.BankModel;
+import com.x.model.CheckHistoryModel;
 import com.x.model.CommentModel;
+import com.x.model.CouponCheckModel;
 import com.x.model.MoneyInfoModel;
 import com.x.model.OrderModel;
+import com.x.model.ShopsModel;
+import com.x.model.TixianModel;
 import com.x.model.UserModel;
 
 import java.util.List;
@@ -68,6 +73,81 @@ public interface ServicesAPI {
          @Query("page") String page
  );
 
+ //商家银行账户详情
+ @POST("?ctl=biz_user&act=bank_info&r_type=1&isapp=true")
+ Observable<HttpResult<BankModel>> bank_info(
+         @Query("sid") String sid
+ );
+
+
+ //银行账户提交
+ @POST("?ctl=biz_user&act=do_save_bank&r_type=1&isapp=true")
+ Observable<HttpResult<Object>> do_save_bank(
+         @Query("sid") String sid,
+         @Query("bank_name") String bank_name,
+         @Query("bank_info") String bank_info,
+         @Query("bank_user") String bank_user,
+         @Query("tel") String tel,
+         @Query("code") String code
+ );
+
+ //商户提现提交
+ @POST("?ctl=biz_withdrawal&act=app_do_submit&r_type=1&isapp=true")
+ Observable<HttpResult<Object>> do_tixian_submit(
+         @Query("sid") String sid,
+         @Query("money") String money,
+         @Query("sms_verify") String sms_verify
+ );
+
+
+ //商户提现记录
+ @POST("?ctl=biz_withdrawal&act=app_index&r_type=1&isapp=true")
+ Observable<HttpResult<List<TixianModel>>> tixian_list(
+         @Query("sid") String sid,
+         @Query("page") String page
+ );
+
+ //用户初始化
+ @POST("?ctl=biz_user&act=app_init_user&r_type=1&isapp=true")
+ Observable<HttpResult<String>> user_init(
+         @Query("id") String id,
+         @Query("sid") String sid,
+         @Query("a") String a
+ );
+
+ //会员登出
+ @POST("?ctl=biz_user&act=loginout&r_type=1&isapp=true")
+ Observable<HttpResult<String>> user_logout();
+
+ //获取商家门店
+ @POST("?ctl=biz_dealv&act=app_index&r_type=1&isapp=true")
+ Observable<HttpResult<List<ShopsModel>>> shops_list();
+
+ //验证团购券
+ @POST("?ctl=biz_dealv&act=app_check_coupon&r_type=1&isapp=true")
+ Observable<HttpResult<CouponCheckModel>> check_coupon(
+         @Query("location_id") String location_id,
+         @Query("coupon_pwd") String coupon_pwd
+ );
+
+ //使用团购券
+ @POST("?ctl=biz_dealv&act=use_coupon&r_type=1&isapp=true")
+ Observable<HttpResult<CouponCheckModel>> use_coupon(
+         @Query("location_id") String location_id,
+         @Query("coupon_pwd") String coupon_pwd,
+         @Query("coupon_use_count") String coupon_use_count
+ );
+
+
+ //使用团购券
+ @POST("?ctl=biz_dealv&act=app_used_history&r_type=1&isapp=true")
+ Observable<HttpResult<List<CheckHistoryModel>>> used_history(
+         @Query("sid") String sid,
+         @Query("aid") String aid,
+         @Query("page") String page
+ );
+
+
    @GET("?ctl=city&act=city_change&r_type=1&isapp=true")
     Observable<HttpResult<Object>> city_city_change(@Query("city_id") String city_id);
 
@@ -79,6 +159,10 @@ public interface ServicesAPI {
          @Query("content") String content,
          @Query("item_id") String item_id
  );
+
+ //发送验证码
+ @GET("?ctl=sms&act=send_sms_code&r_type=1&isapp=true&unique=0")
+ Observable<HttpResult<Object>> sms_send_code(@Query("mobile") String mobile);
 
 
 }

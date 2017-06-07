@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/app_basic"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="消费券验证"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/jt"
+            android:clickable="true"
+            android:onClick="back"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/app_bg"
+            android:orientation="vertical"
+            android:padding="12dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择门店："
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/check_coupon_shops"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ud_edit_bg"
+                android:padding="12dp"
+                android:hint="请选择门店"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:onClick="choose_shop"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="输入验证码："
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ud_edit_bg"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+                <EditText
+                    android:id="@+id/check_coupon_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:padding="12dp"
+                    android:hint="请输入验证码"
+                    android:lines="1"
+                    android:inputType="number"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/scan"
+                    android:layout_marginRight="8dp"
+                    android:clickable="true"
+                    android:onClick="do_scan"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/check_coupon_numlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/check_coupon_numtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="使用数量：(剩余0张有效)"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    />
+
+                <EditText
+                    android:id="@+id/check_coupon_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ud_edit_bg"
+                    android:padding="12dp"
+                    android:hint="请输入数量"
+                    android:textSize="16sp"
+                    android:lines="1"
+                    android:inputType="number"
+                    />
+
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/check_coupon_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/app_basic"
+                android:text="验证"
+                android:textColor="@color/white"
+                android:onClick="do_submit"
+                />
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</LinearLayout>
