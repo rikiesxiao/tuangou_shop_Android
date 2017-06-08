@@ -1,5 +1,6 @@
 package com.x.tuangou_shop;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -139,7 +140,7 @@ public class PhotoPreView extends FragmentActivity {
         }
     }
 
-
+    @SuppressLint({"NewApi", "ValidFragment"})
     public static class PhotoPreViewFragment extends Fragment {
         private PhotoView mImageView;
         WeakReference<ImageItem> item;
