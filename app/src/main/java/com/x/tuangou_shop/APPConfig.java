@@ -63,14 +63,8 @@ public class APPConfig extends BaseActivity {
 
         cacheSize.setText(size+"M");
 
-        if(XAPPUtil.APPCheckIsLogin())
-        {
-            btn.setText("退出登录");
-        }
-        else
-        {
-            btn.setText("登录");
-        }
+        btn.setText("退出登录");
+
     }
 
 

@@ -71,6 +71,9 @@ public class BankInfoVC extends BaseActivity {
 
     public void  do_sendmsg(View v)
     {
+
+        XActivityindicator.create().show();
+
         final String tel = DataCache.getInstance().user.getMobile();
 
         XNetUtil.Handle(APPService.sms_send_code(tel), "验证码发送成功", null, new XNetUtil.OnHttpResult<Boolean>() {

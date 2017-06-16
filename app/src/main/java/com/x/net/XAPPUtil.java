@@ -58,8 +58,7 @@ public class XAPPUtil {
 
     final static public boolean APPCheckIsLogin()
     {
-        return false;
-        //return DataCache.getInstance().user != null;
+        return DataCache.getInstance().user != null;
     }
 
     public static boolean isPhone(String str)
