@@ -24,7 +24,7 @@ import rx.Observable;
 
 public interface ServicesAPI {
 
- String APPUrl = "http://tg01.sssvip.net/mapi/";
+ String APPUrl = "http://www.tcbjpt.com/mapi/";
 
 
  //商家登录

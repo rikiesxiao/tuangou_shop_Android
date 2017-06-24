@@ -142,7 +142,7 @@ public class OrderListVC extends BaseActivity {
     {
         OrderModel m = arrs.get(p);
         Bundle bundle = new Bundle();
-        bundle.putString("url","http://tg01.sssvip.net/wap/index.php?ctl=biz_dealo&act=app_info&id="+m.getId());
+        bundle.putString("url","http://www.tcbjpt.com/wap/index.php?ctl=biz_dealo&act=app_info&id="+m.getId());
         bundle.putString("title","订单详情");
 
         pushVC(XHtmlVC.class,bundle);

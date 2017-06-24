@@ -116,7 +116,7 @@ public class CommentAdapter extends BaseAdapter {
 
         if(url.indexOf("http://") < 0)
         {
-            url = "http://tg01.sssvip.net/" + url;
+            url = "http://www.tcbjpt.com/" + url;
         }
 
         ImageLoader.getInstance().displayImage(url,getItemView.shopImg);
